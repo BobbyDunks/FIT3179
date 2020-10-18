@@ -46,7 +46,11 @@
                 "color": {
                     "field": "Average Price",
                     "type": "quantitative",
-                    "scale": {"type": "log"}
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [1.4, 1.8, 2.2],
+                        "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+                    }
                  },
                 "tooltip": [
                     {"field": "properties.name", "type": "nominal", "title": "Country"},
