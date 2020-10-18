@@ -1,13 +1,17 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "COVID-19 Active Cases (10 Oct 2020)",
+    "title": "Average Price of Avocados",
     "width": 800,
     "height": 600,
-    "projection": {"type": "equirectangular"},
+    "projection": {
+        "type": "mercator", 
+        "scale": 500, 
+        "center": [-100,40]},
     "data": {
         "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/js/counties-10m.json",
         "format": {"type": "topojson", "feature": "states"}
     },
+    
     "transform": [
         {
             "lookup": "properties.name",
@@ -19,19 +23,39 @@
             "fields": ["AveragePrice"]
                     }
         },
-    {"calculate": "datum.AveragePrice + 0.1", "as": "Average Price"}
+    {"calculate": "datum.AveragePrice", "as": "Average Price"}
     ],
-    "mark": {"type": "geoshape"},
-    "encoding": {
-        "color": {
-            "field": "Average Price",
-            "type": "quantitative",
-            "scale": {"type": "log"}
-         },
-        "tooltip": [
-            {"field": "properties.name", "type": "nominal", "title": "Country"},
-            {"field": "AveragePrice", "type": "quantitative"}
-        ]
-    }
+    
+    "layer":[
+        {
+            "mark": {"type": "geoshape"},
+            "encoding": {
+                "color":{
+                    "scale": {
+                        "type": "threshold",
+                        "range": ["#C1C1C1"]
+                        }
+                }
+                
+            }
+                  
+        },
+        {
+            "mark": {"type": "geoshape"},
+            "encoding": {
+                "color": {
+                    "field": "Average Price",
+                    "type": "quantitative",
+                    "scale": {"type": "log"}
+                 },
+                "tooltip": [
+                    {"field": "properties.name", "type": "nominal", "title": "Country"},
+                    {"field": "AveragePrice", "type": "quantitative"}
+                ]
+            }
+        }
+        
+    ]
+    
 }
    
