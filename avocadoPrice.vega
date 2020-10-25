@@ -17,7 +17,7 @@
             "lookup": "properties.name",
             "from": {
             "data": {
-                "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/data/Avodata.csv"
+                "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/Avodata.csv"
                 },
             "key": "state",
             "fields": ["AveragePrice"]
