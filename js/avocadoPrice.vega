@@ -41,7 +41,7 @@
                   
         },
         {
-            "mark": {"type": "geoshape"},
+            "mark": {"type": "geoshape", "fill":"#C1C1C1"},
             "encoding": {
                 "color": {
                     "field": "Average Price",
