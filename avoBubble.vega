@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width":500,
+    "height":400,
+    "title":"Avocado Price vs Population fraction of millenials ",
+    "data": {
+        "url":"https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/Avodato.csv"
+    },
+    "transform": [
+        {"filter":"datum.millenials > 0"}
+    ],
+    "selection": {
+        "state_highlight":{
+            "type":"multi",
+            "fields":["state"],
+            "bind":"legend"
+        }
+    },
+    "mark":"circle",
+    "encoding":{
+        "x":{
+            "field":"millenials",
+            "type": "quantitative",
+            "title": "millenial fraction of population",
+            "scale":{
+                "domain":[0.10,0.15]
+            }
+        },
+        "y":{
+            "field":"averagePrice",
+            "type": "quantitative",
+            "title" :"Avocado Price"
+        },
+        "color":{
+            "field":"state",
+            "type":"nominal"
+        },
+        "size":{
+            "field":"averagePrice",
+            "type":"quantitative",
+            "scale":{
+                "type":"threshold",
+                "domain":[0.5,1,1.5],
+                "range":[20,150,400,700]
+            }
+        },
+        "opacity":{
+            "condition":{"selection":"state_highlight", "value":0.9},
+            "value":0.2
+        },
+        "tooltip":[
+            {"field":"state", "type": "nominal"},
+            {"field":"averagePrice", "type":"quantitative"},
+            {"field":"fraction of Millenials", "type": "quantitative"}
+
+        ]
+    } 
+}  
