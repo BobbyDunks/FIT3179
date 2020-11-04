@@ -91,7 +91,7 @@
             "scale":{
                 "type": "threshold",
                 "domain":[10,100],
-                "range":[50,500,2500]
+                "range":[50,500,2000]
                 
             }
          },
