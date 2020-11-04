@@ -1,8 +1,8 @@
 {
 "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "title": "Avg. Yearly Avo Spending vs House Price",
-    "height":500,
-    "width":700,
+    "height":400,
+    "width":500,
     "config": {
         "axis": {
           "titleFontSize":16
