@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width":700,
+  "config": {
+      "axis": {
+        "titleFontSize":16
+      }
+      
+  },
+  "title": "Avos Purchased per Person",
+  "data": {"url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/masterData.csv"},
+  "mark": {
+      "type": "bar"
+  },
+  "transform": [
+    {"calculate": "datum.twenty_five_to_thirty_four", "as": "millenials"},
+    {"calculate": "datum.avosPp/365", "as":"avosPDay"},
+    {"calculate": "(datum.avosPp/365)*322", "as":"Daily AvoCalories"}
+  ],
+   
+  "encoding": {
+    "x": {"field": "state", "type": "nominal", "title":"State", "sort":"-y","axis":{
+        "labelFontSize":12,
+        "labelFontStyle":"bold",
+        "labelAngle":-80
+
+    }},
+    "y": {"field": "avosPp", "type": "quantitative", "title":"Annual Avos Per Person", "axis":{
+        "labelFontSize":12,
+        "labelFontStyle":"bold"
+    }},
+    "color": {
+        "field": "millenials",
+        "type": "quantitative",
+        "title":"millenial % of Population",
+        "scale": {
+            "type": "threshold",
+            "domain": [12, 12.5, 13],
+            "range": ["#356211", "#558303", "#b3c656", "#F2E880"],
+            "reverse" : true                    }
+        },
+        "tooltip":[
+            {"field":"avosPp","title":"Annual Avos/Person","format":".1f"},
+            {"field":"avosPDay","title":"Daily Avos/Person","format":".1f"},
+            {"field":"Daily AvoCalories","title":"Daily Avo-Calories","format":".1f"}
+
+        ]
+    },
+    
+    "background":"white"
+}
