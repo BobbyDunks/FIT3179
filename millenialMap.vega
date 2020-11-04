@@ -1,8 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "title": "Millenial Population By State 2",
-    "width": "container",
-    "height": "container",
     "projection": {
         "type": "mercator", 
         "scale": 700, 
