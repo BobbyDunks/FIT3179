@@ -5,7 +5,7 @@
     "width":400,
     "projection": {
         "type": "mercator", 
-        "scale": 700, 
+        "scale": 390, 
         "center": [-96,40]},
         "data": {
             "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/js/counties-10m.json",
