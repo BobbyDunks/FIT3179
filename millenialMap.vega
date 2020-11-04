@@ -1,0 +1,66 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "title": "Millenial Population By State",
+    "height":300,
+    "width":400,
+    "projection": {
+        "type": "mercator", 
+        "scale": 390, 
+        "center": [-96,40]},
+        "data": {
+            "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/js/counties-10m.json",
+            "format": {"type": "topojson", "feature": "states"}
+    },
+    
+    "transform": [
+        {
+            "lookup": "properties.name",
+            "from": {
+            "data": {
+                "url": "https://raw.githubusercontent.com/BobbyDunks/FIT3179/main/masterData.csv"
+                },
+            "key": "state",
+            "fields": ["twenty_five_to_thirty_four"]
+                    }
+        },
+    {"calculate": "datum.twenty_five_to_thirty_four", "as": "millenials"}
+    ],
+    
+    "layer":[
+        {
+            "mark": {"type": "geoshape", "fill":"#E8E8E8"},
+            "encoding": {
+                "color":{
+                    "scale": {
+                        "type": "threshold",
+                        "range": ["#C1C1C1"]
+                        }
+                }
+                
+            }
+                  
+        },
+        {
+            "mark": {"type": "geoshape"},
+            "encoding": {
+                "color": {
+                    "field": "millenials",
+                    "type": "quantitative",
+                    "title":"Millenial % of Pop",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [12, 12.5, 13],
+                        "range": ["#356211", "#558303", "#b3c656", "#F2E880"],
+                        "reverse" : true                    }
+                 },
+                "tooltip": [
+                    {"field": "properties.name", "type": "nominal", "title": "State"},
+                    {"field": "millenials", "type": "quantitative", "title":"Millenial % of Population"}
+                ]
+            }
+        }
+        
+    ]
+    
+}
+   

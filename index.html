@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Visualisations | An Example</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <!-- Import vega-embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- custom style -->
+  <style>
+    *{
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    h1{
+      font-weight: 950;
+    }
+     body{
+       background-color: #356211;
+     }
+     .page{
+       width: 950px;    
+       background-color: white;   
+       margin: auto;
+       padding: 50px;
+       padding-top: 35px;
+    }
+    .vis-container{
+      width: 100%;
+    }
+    .description h2, h1{
+      margin-top:0px;
+    }
+    .description-right {
+      padding-left: 20px;
+    }
+    .description-left{
+      padding-right: 20px;
+    }
+    .pure-g{
+      margin-bottom: 25px;
+    }
+    .small-font{
+        font-size: 14px;
+    }
+    span { color: #36cc00 }
+  </style>
+</head>
+<body>
+
+ <div class="page">
+
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Millenials, Houses and <span>Avocados</span></h1>
+        <p>In 2015, Tim Gurner, a housing mogul, Declared that <span>millenials can't afford houses because they are
+           spending all their money on avocados</span>. In this dashboard, I'm going to investigate if there is any truth to that claim.
+          To do this, I am going to address each of these four questions: <span>Where are the Millenials? How many Millenials are there? Are 
+          they buying the most avocados? And finally, Are avocados spendings affecting their housing prospects?</span></p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-left">
+            <h2>Where are the Millenials?</h2>
+            <p>This first visualisation shows the percentage of the population of each state made up by the millenial generation.
+              While there is unfortunately a lot of missing data, we can see that there is a tentative trend for <span>western, coastal states
+            to have a higher percentage of millenials</span>. </p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-left">
+            <h2>How Many Millenials Are There?</h2>
+            <p>In this stacked bar chart, we can see a more detailed breakdown of the state demographics. Millenials are highlighted
+              in green. The difference between them is too hard to compare by eye, but by playing with the sliders, we can
+              better appreciate the different <span>demographics of the high, mid and low percentage millenial states</span>. 
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis2" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   
+   <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-left">
+            <h2>Are They Buying The Most Avocados?</h2>
+            <p>In this visualisaition we can see the number of avocados purchased per capita in each state. By keeping the same colour scheme 
+              from the first visualisation we can easily see how millenial heavy each state is. Look at those results! According to Tim Gurner,
+            we should be seeing the most millenial-heavy states buying the most avocados, but instead we see the opposite! <span>The top three avocado
+          loving states are in the lowest millenial category!</span> Not looking good for Tim Gurner...  </p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis3" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   
+   <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-left">
+            <h2>Is it Affecting Their Housing Prospects?</h2>
+            <p>Finally, we take a look at how much each state spends on avocados per year and compare that against their respective average housing price.
+              <span>The size of each dot represents the number of years that an average person in that state would need to stop buying avocados to afford a house in their state.</span>
+              If Tim Gurner is correct, we should expect to see that all the high-millenial states would be small, given that avocados are supposedly the sole obstacle between
+              millenials and home ownership. Instead, we see that <span>the only states in the smallest years to buy bracket are all in the lowest quantile of millenial population!</span>
+            </p>
+            <p>
+              The only explanation of the data examined here is that Tim Gurner must have slightly mised the mark with his predictions. It turns out that there are more
+              factors at play in Millenial's struggle for homeownership than simply avo indulgence... who knew?
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis4" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var specVis1 = "./millenialMap.vega";
+  var specVis2= "./millenialStackedBar.vega";
+  var specVis3 = "./spendingDot.vega";
+  var specVis4= "./housePriceBubble.vega";
+
+  vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  vegaEmbed('#vis4', specVis4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+</body>
+</html>
