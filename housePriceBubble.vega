@@ -1,6 +1,6 @@
 {
 "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "title": "Avg. Yearly Avo Spending vs House Price 2",
+    "title": "Avg. Yearly Avo Spending vs House Price",
     "height":300,
     "width":400,
     "config": {
